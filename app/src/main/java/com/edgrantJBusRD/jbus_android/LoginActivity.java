@@ -28,18 +28,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //hide action bar dengan null error exeption
-//        try {
-//            Objects.requireNonNull(getSupportActionBar()).hide();
-//        }
-//        catch (NullPointerException nullPointerException){
-//            System.out.println("nullPointerExeption");
-//        }
+        try {
+            Objects.requireNonNull(getSupportActionBar()).hide();
+        }
+        catch (NullPointerException nullPointerException){
+            System.out.println("nullPointerExeption");
+        }
 
 
         emailEditText = (EditText) findViewById(R.id.loginEmail);
         loginButton = (Button) findViewById(R.id.loginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
 
+
+//        String text = emailEditText.getText().toString();
         registerButton.setOnClickListener(v -> {
             moveActivity(this, RegisterActivity.class);
         });
@@ -59,12 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.action_bar_menu, menu);
-        return true;
-    }
-
 
     private void moveActivity(Context ctx, Class<?> cls){
         Intent intent = new Intent(ctx, cls);
