@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,12 +28,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //hide action bar dengan null error exeption
-        try {
-            Objects.requireNonNull(getSupportActionBar()).hide();
-        }
-        catch (NullPointerException nullPointerException){
-            System.out.println("nullPointerExeption");
-        }
+//        try {
+//            Objects.requireNonNull(getSupportActionBar()).hide();
+//        }
+//        catch (NullPointerException nullPointerException){
+//            System.out.println("nullPointerExeption");
+//        }
 
 
         emailEditText = (EditText) findViewById(R.id.loginEmail);
@@ -57,6 +59,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_bar_menu, menu);
+        return true;
+    }
+
 
     private void moveActivity(Context ctx, Class<?> cls){
         Intent intent = new Intent(ctx, cls);
