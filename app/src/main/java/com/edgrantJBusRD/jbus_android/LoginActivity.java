@@ -43,12 +43,12 @@ public class LoginActivity extends AppCompatActivity {
             moveActivity(this, RegisterActivity.class);
         });
         loginButton.setOnClickListener(view -> {
-//                String email = emailEditText.getText().toString();
-//
-//                if (!isValidEmail(email)) {
-//                    Toast.makeText(LoginActivity.this, "Invalid email format. Please try again.", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                String email = emailEditText.getText().toString();
+
+                if (!isValidEmail(email)) {
+                    Toast.makeText(LoginActivity.this, "Invalid email format. Please try again.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
             moveActivity(ctx, MainActivity.class);
 //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
