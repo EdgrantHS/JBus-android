@@ -12,7 +12,7 @@
             android:title="Search Button"
             app:actionViewClass="androidx.appcompat.widget.SearchView"
             app:showAsAction="collapseActionView|always"
-            tools:ignore="HardcodedText" />
+            tools:ignore="AlwaysShowAction,HardcodedText" />
         <item
             android:id="@+id/account_button"
             android:icon="@drawable/account"

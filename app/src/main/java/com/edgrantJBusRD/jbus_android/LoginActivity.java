@@ -6,9 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         emailEditText = (EditText) findViewById(R.id.loginEmail);
-        loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton = (Button) findViewById(R.id.registerButtonInActivity);
         registerButton = (Button) findViewById(R.id.registerButton);
 
 
@@ -45,9 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             moveActivity(this, RegisterActivity.class);
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        loginButton.setOnClickListener(view -> {
 //                String email = emailEditText.getText().toString();
 //
 //                if (!isValidEmail(email)) {
@@ -55,10 +50,9 @@ public class LoginActivity extends AppCompatActivity {
 //                    return;
 //                }
 
-                moveActivity(ctx, MainActivity.class);
+            moveActivity(ctx, MainActivity.class);
 //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                startActivity(intent);
-            }
         });
     }
 
