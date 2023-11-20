@@ -13,18 +13,23 @@ public class AboutMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_me);
 
         //temporary text value
-        String nameText = "Nama temporary";
+        String nameText = "Satrio temporary";
         String emailText = "email@email.com";
-        int balanceText = 10;
+        String balanceText = "10";
 
         // find object
-        TextView username = (TextView) findViewById(R.id.valueUsername);
-        TextView email = (TextView) findViewById(R.id.valueEmail);
-        TextView balance = (TextView) findViewById(R.id.valueBalance);
+        TextView username = findViewById(R.id.valueUsername);
+        TextView email = findViewById(R.id.valueEmail);
+        TextView balance = findViewById(R.id.valueBalance);
 
-        //set value
+        // set value
         username.setText(nameText);
         email.setText(emailText);
         balance.setText(balanceText);
+
+        // membuat initial
+        TextView accountInitial = findViewById(R.id.accountInitial);
+        String initialText = username.getText().toString().substring(0, 1);
+        accountInitial.setText(initialText);
     }
 }

@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.edgrantJBusRD.jbus_android.model.Bus;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +21,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<Bus> busList = (ArrayList<Bus>) Bus.sampleBusList(10);
+        ArrayList<BusView> busViewList = new ArrayList<>();
+
+        for (Bus singleBus :
+                busList) {
+            busViewList.add(new BusView(singleBus.name));
+        }
+
+//         debug
+//        for (BusView singleView : busViewList){
+//            System.out.println(singleView.getBusName());
+//        }
+
+        BusArrayAdapter busArrayAdapter = new BusArrayAdapter(this, busViewList);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(busArrayAdapter);
+
     }
 
     @Override
@@ -28,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.account_button) {
-            moveActivity(MainActivity.this, AboutMeActivity.class);
+            moveActivity(this, AboutMeActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -38,4 +61,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(ctx, cls);
         startActivity(intent);
     }
+
+
 }
