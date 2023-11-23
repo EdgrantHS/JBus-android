@@ -17,15 +17,21 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.Bus;
+import com.edgrantJBusRD.jbus_android.request.BaseApiService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
 public class MainActivity extends AppCompatActivity {
     private Button[] btns;
     private int currentPage = 0;
-    private int pageSize = 12; // kalian dapat bereksperimen dengan field ini
+    private int pageSize = 5; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
     private List<Bus> listBus = new ArrayList<>();
@@ -68,7 +74,15 @@ public class MainActivity extends AppCompatActivity {
             goToPage(currentPage);
         });
 
-
+//        Bus newbus;
+//        BaseApiService baseApiService = new BaseApiService() {
+//            @Override
+//            public Call<Account> getAccountbyId(int id) {
+//                @GET("account/{id}")
+//                Call<Account> getAccountbyId (@Path("id") int id);
+//            }
+//        }
+//        Call<Bus> call = baseApiService.getAccountbyId(0);
     }
 
     @Override
