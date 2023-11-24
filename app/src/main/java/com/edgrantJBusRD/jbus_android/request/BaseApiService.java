@@ -9,6 +9,12 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface BaseApiService {
-    @GET("account/{id}")
-    Call<Account> getAccountbyId (@Path("id") int id);
+//    @GET("account/{id}")
+//    Call<Account> getAccountbyId (@Path("id") int id);
+    @POST("account/register")
+    Call<BaseResponse<Account>> register (
+            @Query("name") String name,
+            @Query("email") String email,
+            @Query("password") String password
+    );
 }

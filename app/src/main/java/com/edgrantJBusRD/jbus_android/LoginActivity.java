@@ -10,13 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.edgrantJBusRD.jbus_android.model.Account;
+import com.edgrantJBusRD.jbus_android.model.BaseResponse;
+import com.edgrantJBusRD.jbus_android.request.BaseApiService;
+
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class LoginActivity extends AppCompatActivity {
-    EditText emailEditText = null;
-    Button loginButton = null;
-    Button registerButton = null;
-    Context ctx = this;
+    private BaseApiService mApiService;
+    private EditText emailEditText = null;
+    private Button loginButton = null;
+    private Button registerButton = null;
+    private final Context mContext = this;
+    static Account loggedAccount = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +61,50 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-            moveActivity(ctx, MainActivity.class);
+            moveActivity(mContext, MainActivity.class);
 //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                startActivity(intent);
         });
     }
 
-    private void moveActivity(Context ctx, Class<?> cls){
-        Intent intent = new Intent(ctx, cls);
+    private void moveActivity(Context mContext, Class<?> cls){
+        Intent intent = new Intent(mContext, cls);
         startActivity(intent);
     }
-    private void viewToast(Context ctx, String message){
-        Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show();
+    private void viewToast(Context mContext, String message){
+        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
     private boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    protected void handleRegister() {
+        // handling empty field
+        String emailS = emailEditText.getText().toString();
+        if (emailS.isEmpty()) {
+            Toast.makeText(mContext, "Field cannot be empty",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mApiService.register(emailS).enqueue(new Callback<BaseResponse<Account>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Account>> call, Response<BaseResponse<Account>> response) {
+                // handle the potential 4xx & 5xx error
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " +
+                            response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                BaseResponse<Account> res = response.body();
+                // if success finish this activity (back to login activity)
+                if (res.success) finish();
+                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(Call<BaseResponse<Account>> call, Throwable t) {
+                Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
