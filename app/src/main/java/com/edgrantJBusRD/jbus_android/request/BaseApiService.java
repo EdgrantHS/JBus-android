@@ -17,4 +17,9 @@ public interface BaseApiService {
             @Query("email") String email,
             @Query("password") String password
     );
+    @POST("account/login")
+    Call<BaseResponse<Account>> login (
+            @Query("email") String email,
+            @Query("password") String password
+    );
 }

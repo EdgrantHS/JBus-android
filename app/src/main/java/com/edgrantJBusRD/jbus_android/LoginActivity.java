@@ -24,10 +24,12 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     private BaseApiService mApiService;
     private EditText emailEditText = null;
+    private EditText passwordEditText = null;
     private Button loginButton = null;
     private Button registerButton = null;
     private final Context mContext = this;
-    static Account loggedAccount = null;
+    public static Account loggedAccount = null;
+    private boolean loginSucsess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = (EditText) findViewById(R.id.loginEmail);
         loginButton = (Button) findViewById(R.id.registerButtonInActivity);
         registerButton = (Button) findViewById(R.id.registerButton);
+        passwordEditText = (EditText) findViewById(R.id.loginPassword);
 
 
 //        String text = emailEditText.getText().toString();
@@ -61,9 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-            moveActivity(mContext, MainActivity.class);
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
+            handleLogin();
+            if (loginSucsess){
+                moveActivity(mContext, MainActivity.class);
+            }
         });
     }
 
@@ -79,15 +83,16 @@ public class LoginActivity extends AppCompatActivity {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    protected void handleRegister() {
+    protected void handleLogin() {
         // handling empty field
         String emailS = emailEditText.getText().toString();
-        if (emailS.isEmpty()) {
+        String passwordS = passwordEditText.getText().toString();
+        if (emailS.isEmpty() || passwordS.isEmpty()) {
             Toast.makeText(mContext, "Field cannot be empty",
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        mApiService.register(emailS).enqueue(new Callback<BaseResponse<Account>>() {
+        mApiService.login(emailS, passwordS).enqueue(new Callback<BaseResponse<Account>>() {
             @Override
             public void onResponse(Call<BaseResponse<Account>> call, Response<BaseResponse<Account>> response) {
                 // handle the potential 4xx & 5xx error
@@ -99,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
                 BaseResponse<Account> res = response.body();
                 // if success finish this activity (back to login activity)
                 if (res.success) finish();
+                loggedAccount = res.payload;
+                loginSucsess = res.success;
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
             @Override
