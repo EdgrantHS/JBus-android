@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Context mContext;
     private EditText name, email, password;
     private Button registerButton = null;
+    private boolean registerSucsess = false;
 
 
     @Override
@@ -49,7 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerButton.setOnClickListener(v -> {
             handleRegister();
-            moveActivity(this, LoginActivity.class);
+            if (registerSucsess){
+                moveActivity(mContext, LoginActivity.class);
+            }
         });
     }
 
@@ -80,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                BaseResponse<Account> res = response.body();
             // if success finish this activity (back to login activity)
                if (res.success) finish();
+               registerSucsess = res.success;
                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
            }
            @Override
