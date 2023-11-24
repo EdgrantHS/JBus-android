@@ -108,7 +108,9 @@
                     // if success finish this activity (back to login activity)
                     if (res.success) finish();
                     loggedAccount = res.payload;
-                    moveActivity(mContext, MainActivity.class);
+                    if(res.success) {
+                        moveActivity(mContext, MainActivity.class);
+                    }
                     Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
                 }
                 @Override
