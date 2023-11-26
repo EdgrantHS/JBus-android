@@ -73,16 +73,6 @@ public class MainActivity extends AppCompatActivity {
             currentPage = currentPage != noOfPages -1? currentPage+1 : currentPage;
             goToPage(currentPage);
         });
-
-//        Bus newbus;
-//        BaseApiService baseApiService = new BaseApiService() {
-//            @Override
-//            public Call<Account> getAccountbyId(int id) {
-//                @GET("account/{id}")
-//                Call<Account> getAccountbyId (@Path("id") int id);
-//            }
-//        }
-//        Call<Bus> call = baseApiService.getAccountbyId(0);
     }
 
     @Override

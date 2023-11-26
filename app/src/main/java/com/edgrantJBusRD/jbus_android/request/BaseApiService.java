@@ -2,6 +2,8 @@ package com.edgrantJBusRD.jbus_android.request;
 
 import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.BaseResponse;
+import com.edgrantJBusRD.jbus_android.model.Renter;
+
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -26,7 +28,7 @@ public interface BaseApiService {
     );
 
     @POST("account/{id}/registerRenter")
-    Call<BaseResponse<Double>> registerRenter(
+    Call<BaseResponse<Renter>> registerRenter(
             @Path("id") int id,
             @Query("companyName") String companyName,
             @Query("address") String address,

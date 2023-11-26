@@ -1,5 +1,6 @@
 package com.edgrantJBusRD.jbus_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -24,18 +25,17 @@ public class RegisterActivity extends AppCompatActivity {
     private BaseApiService mApiService;
     private Context mContext;
     private EditText name, email, password;
-    private Button registerButton = null;
-    private boolean registerSucsess = false;
+    private boolean registerSuccess = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //hide action bar dengan null error exeption
+        //hide action bar dengan null error exception
         try {
             Objects.requireNonNull(getSupportActionBar()).hide();
         }
         catch (NullPointerException nullPointerException){
-            System.out.println("nullPointerExeption");
+            System.out.println("nullPointerException");
         }
 
         super.onCreate(savedInstanceState);
@@ -43,14 +43,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         mContext = this;
         mApiService = UtilsApi.getApiService();
-        name = findViewById(R.id.loginUsername);
-        email = findViewById(R.id.loginEmail);
-        password = findViewById(R.id.loginPassword);
-        registerButton = findViewById(R.id.registerButtonInActivity);
+        name = findViewById(R.id.CompanyName);
+        email = findViewById(R.id.Address);
+        password = findViewById(R.id.PhoneNumber);
+        Button registerButton = findViewById(R.id.registerButtonInActivity);
 
         registerButton.setOnClickListener(v -> {
             handleRegister();
-            if (registerSucsess){
+            if (registerSuccess){
                 moveActivity(mContext, LoginActivity.class);
             }
         });
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         mApiService.register(nameS, emailS, passwordS).enqueue(new Callback<BaseResponse<Account>>() {
            @Override
-           public void onResponse(Call<BaseResponse<Account>> call, Response<BaseResponse<Account>> response) {
+           public void onResponse(@NonNull Call<BaseResponse<Account>> call, @NonNull Response<BaseResponse<Account>> response) {
             // handle the potential 4xx & 5xx error
                if (!response.isSuccessful()) {
                    Toast.makeText(mContext, "Application error " +
@@ -82,12 +82,13 @@ public class RegisterActivity extends AppCompatActivity {
                }
                BaseResponse<Account> res = response.body();
             // if success finish this activity (back to login activity)
+               assert res != null;
                if (res.success) finish();
-               registerSucsess = res.success;
+               registerSuccess = res.success;
                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
            }
            @Override
-           public void onFailure(Call<BaseResponse<Account>> call, Throwable t) {
+           public void onFailure(@NonNull Call<BaseResponse<Account>> call, @NonNull Throwable t) {
                Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
            }
        });

@@ -45,10 +45,10 @@
             }
 
 
-            emailEditText = (EditText) findViewById(R.id.loginEmail);
+            emailEditText = (EditText) findViewById(R.id.Address);
             Button loginButton = (Button) findViewById(R.id.registerButtonInActivity);
             Button registerButton = (Button) findViewById(R.id.registerButton);
-            passwordEditText = (EditText) findViewById(R.id.loginPassword);
+            passwordEditText = (EditText) findViewById(R.id.PhoneNumber);
             mApiService = UtilsApi.getApiService();
 
 

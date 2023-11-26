@@ -70,17 +70,21 @@ public class AboutMeActivity extends AppCompatActivity {
         //different text based on if account is renter or not
         if (accountIsRenter){ //kalau renter
             renterText.setText("You're already registered as a renter");
+            renterButton.setText("Manage Bus");
         }
         else { //kalau bukan renter
             renterText.setText("You're not registered as a renter");
+            renterButton.setText("Register your Company");
         }
 
         //melakukan hal yg beda berdasarkan renter or not
         renterButton.setOnClickListener(v -> {
-            if (accountIsRenter)//kalau renter
+            if (accountIsRenter) {//kalau renter
                 moveActivity(mContext, ManageBusActivity.class);
-            else //kalau bukan renter
+            }
+            else {//kalau bukan renter
                 moveActivity(mContext, RegisterRenterActivity.class);
+            }
         });
     }
 

@@ -25,7 +25,7 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/loginUsername"
+        android:id="@+id/CompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/RegisterText" />
 
     <EditText
-        android:id="@+id/loginEmail"
+        android:id="@+id/Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -51,10 +51,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/CompanyName" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/PhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/Address" />
 
     <Button
         android:id="@+id/registerButtonInActivity"
@@ -80,7 +80,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
 
     <TextView
         android:id="@+id/registerPenjelasan"
@@ -89,7 +89,7 @@
         android:layout_marginStart="16dp"
         android:text="Input username, email, and password"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/loginEmail"
+        app:layout_constraintBottom_toTopOf="@+id/Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

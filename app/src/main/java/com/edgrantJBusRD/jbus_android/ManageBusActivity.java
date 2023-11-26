@@ -1,4 +1,14 @@
 package com.edgrantJBusRD.jbus_android;
 
-public class ManageBusActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class ManageBusActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manage_bus);
+    }
 }
