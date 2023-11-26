@@ -3,14 +3,11 @@ package com.edgrantJBusRD.jbus_android.request;
 import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.BaseResponse;
 import retrofit2.Call;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface BaseApiService {
-//    @GET("account/{id}")
-//    Call<Account> getAccountbyId (@Path("id") int id);
     @POST("account/register")
     Call<BaseResponse<Account>> register (
             @Query("name") String name,
@@ -25,6 +22,14 @@ public interface BaseApiService {
     @POST("account/{id}/topUp")
     Call<BaseResponse<Double>> topUp(
             @Path("id") int id,
-            @Query("amount") double ammount
+            @Query("amount") double amount
+    );
+
+    @POST("account/{id}/registerRenter")
+    Call<BaseResponse<Double>> registerRenter(
+            @Path("id") int id,
+            @Query("companyName") String companyName,
+            @Query("address") String address,
+            @Query("phoneNumber") String phoneNumber
     );
 }

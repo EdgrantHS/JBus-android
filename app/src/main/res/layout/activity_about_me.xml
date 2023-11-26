@@ -35,7 +35,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountInitial"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -59,7 +59,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEmail"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <TextView
         android:id="@+id/valueUsername"
@@ -104,7 +104,9 @@
         android:hint="Top Up Ammount"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textBalance" />
+        app:layout_constraintTop_toBottomOf="@+id/textBalance"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/topUpButton"
@@ -113,5 +115,29 @@
         android:layout_marginStart="32dp"
         android:text="Top Up"
         app:layout_constraintStart_toEndOf="@+id/topUpInput"
-        app:layout_constraintTop_toTopOf="@+id/topUpInput" />
+        app:layout_constraintTop_toTopOf="@+id/topUpInput"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/renterStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Your not registered as a renter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topUpInput"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/registerRenterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register your Company"
+        app:layout_constraintTop_toBottomOf="@+id/renterStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="148dp"
+        tools:ignore="HardcodedText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

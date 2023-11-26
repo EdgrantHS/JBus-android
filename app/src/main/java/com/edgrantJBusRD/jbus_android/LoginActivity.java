@@ -1,5 +1,6 @@
     package com.edgrantJBusRD.jbus_android;
 
+    import androidx.annotation.NonNull;
     import androidx.appcompat.app.AppCompatActivity;
 
     import android.content.Context;
@@ -26,11 +27,8 @@
         private BaseApiService mApiService;
         private EditText emailEditText = null;
         private EditText passwordEditText = null;
-        private Button loginButton = null;
-        private Button registerButton = null;
         private final Context mContext = this;
         public static Account loggedAccount = null;
-    //    private boolean loginSucsess = false;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +36,18 @@
             setContentView(R.layout.activity_login);
 
 
-            //hide action bar dengan null error exeption
+            //hide action bar dengan null error exception
             try {
                 Objects.requireNonNull(getSupportActionBar()).hide();
             }
             catch (NullPointerException nullPointerException){
-                System.out.println("nullPointerExeption");
+                System.out.println("nullPointerException");
             }
 
 
             emailEditText = (EditText) findViewById(R.id.loginEmail);
-            loginButton = (Button) findViewById(R.id.registerButtonInActivity);
-            registerButton = (Button) findViewById(R.id.registerButton);
+            Button loginButton = (Button) findViewById(R.id.registerButtonInActivity);
+            Button registerButton = (Button) findViewById(R.id.registerButton);
             passwordEditText = (EditText) findViewById(R.id.loginPassword);
             mApiService = UtilsApi.getApiService();
 
@@ -67,10 +65,6 @@
                     }
 
                 handleLogin();
-                // move activity dipindahkan ke handle login
-//                if (loggedAccount != null){
-//                    moveActivity(mContext, MainActivity.class);
-//                }
             });
         }
 
@@ -78,9 +72,9 @@
             Intent intent = new Intent(mContext, cls);
             startActivity(intent);
         }
-        private void viewToast(Context mContext, String message){
-            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
-        }
+//        private void viewToast(Context mContext, String message){
+//            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+//        }
 
         private boolean isValidEmail(String email) {
             return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -97,7 +91,9 @@
             }
             mApiService.login(emailS, passwordS).enqueue(new Callback<BaseResponse<Account>>() {
                 @Override
-                public void onResponse(Call<BaseResponse<Account>> call, Response<BaseResponse<Account>> response) {
+                public void onResponse(
+                        @NonNull Call<BaseResponse<Account>> call,
+                        @NonNull Response<BaseResponse<Account>> response) {
                     // handle the potential 4xx & 5xx error
                     if (!response.isSuccessful()) {
                         Toast.makeText(mContext, "Application error " +
@@ -105,7 +101,7 @@
                         return;
                     }
                     BaseResponse<Account> res = response.body();
-                    // if success finish this activity (back to login activity)
+                    assert res != null;
                     if (res.success) finish();
                     loggedAccount = res.payload;
                     if(res.success) {
@@ -114,7 +110,7 @@
                     Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
                 }
                 @Override
-                public void onFailure(Call<BaseResponse<Account>> call, Throwable t) {
+                public void onFailure(@NonNull Call<BaseResponse<Account>> call, @NonNull Throwable t) {
                     Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
                 }
             });
