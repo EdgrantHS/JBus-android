@@ -2,9 +2,13 @@ package com.edgrantJBusRD.jbus_android.request;
 
 import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.BaseResponse;
+import com.edgrantJBusRD.jbus_android.model.Bus;
 import com.edgrantJBusRD.jbus_android.model.Renter;
 
+import java.util.List;
+
 import retrofit2.Call;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -33,5 +37,9 @@ public interface BaseApiService {
             @Query("companyName") String companyName,
             @Query("address") String address,
             @Query("phoneNumber") String phoneNumber
+    );
+    @GET("account/getMyBus")
+    Call<BaseResponse<List<Bus>>> getMyBus(
+            @Query("accountId") int accountId
     );
 }
