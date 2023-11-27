@@ -53,9 +53,6 @@ public class ManageBusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_bus);
         mApiService = UtilsApi.getApiService();
 
-        ArrayList<Bus> busList = (ArrayList<Bus>) Bus.sampleBusList(40);
-
-
 
         // hubungkan komponen dengan ID nya
         prevButton = findViewById(R.id.prev_page);
