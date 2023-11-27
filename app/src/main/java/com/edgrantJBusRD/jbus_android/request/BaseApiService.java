@@ -42,7 +42,7 @@ public interface BaseApiService {
             @Query("phoneNumber") String phoneNumber
     );
     @GET("bus/getMyBus")
-    Call<BaseResponse<List<Bus>>> getMyBus(
+    Call<List<Bus>> getMyBus(
             @Query("accountId") int accountId
     );
     @GET("station/getAll")

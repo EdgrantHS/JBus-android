@@ -55,7 +55,6 @@ public class AddBusActivity extends AppCompatActivity {
     TextView name = null;
     TextView capacity = null;
     TextView price = null;
-    private boolean addBusSuccess = false;
 
 
     AdapterView.OnItemSelectedListener busTypeOISL = new AdapterView.OnItemSelectedListener() {
@@ -153,9 +152,6 @@ public class AddBusActivity extends AppCompatActivity {
             if (cLunch.isChecked()) { selectedFacilities.add(Facility.LUNCH);}
 
             handleCreateBus();
-            if(addBusSuccess){
-                moveActivity(mContext, ManageBusActivity.class);
-            }
         });
     }
 
@@ -257,18 +253,18 @@ public class AddBusActivity extends AppCompatActivity {
                 BaseResponse<Bus> res = response.body();
                 // if success finish this activity (back to login activity)
                 assert res != null;
-                System.out.println("1" + res.message);
-                System.out.println(
-                        "iId" + iId + "\n" +
-                        "sName" + sName + "\n" +
-                        "iCapacity" + iCapacity + "\n" +
-                        "lSelectedFacilities" + lSelectedFacilities + "\n" +
-                        "bBusType" + bBusType + "\n" +
-                        "iPrice" + iPrice + "\n" +
-                        "iDepart" + iDepart + "\n" +
-                        "iArive" + iArive);
+//                System.out.println("1" + res.message);
+//                System.out.println(
+//                        "iId" + iId + "\n" +
+//                        "sName" + sName + "\n" +
+//                        "iCapacity" + iCapacity + "\n" +
+//                        "lSelectedFacilities" + lSelectedFacilities + "\n" +
+//                        "bBusType" + bBusType + "\n" +
+//                        "iPrice" + iPrice + "\n" +
+//                        "iDepart" + iDepart + "\n" +
+//                        "iArive" + iArive);
                 if (res.success) finish();
-                addBusSuccess = res.success;
+                moveActivity(mContext, ManageBusActivity.class);
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
             @Override

@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class CalendarBusArrayAdapter extends ArrayAdapter<CalenderBusView> {
+public class CalendarBusArrayAdapter extends ArrayAdapter<CalendarBusView> {
 
-    public CalendarBusArrayAdapter(@NonNull Context context, ArrayList<CalenderBusView> arrayList) {
+    public CalendarBusArrayAdapter(@NonNull Context context, ArrayList<CalendarBusView> arrayList) {
         super(context, 0, arrayList);
     }
 
@@ -28,10 +28,10 @@ public class CalendarBusArrayAdapter extends ArrayAdapter<CalenderBusView> {
         }
 
         // Get the data item for this position
-        CalenderBusView busView = getItem(position);
+        CalendarBusView busView = getItem(position);
 
         // Lookup view for data population
-        TextView tvBusName = convertView.findViewById(R.id.busName);
+        TextView tvBusName = convertView.findViewById(R.id.tvBusName);
         ImageView imgCalendar = convertView.findViewById(R.id.imgCalendar); // Make sure you have imgCalendar ID in your layout
 
         // Populate the data into the template view using the data object

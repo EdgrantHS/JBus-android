@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.edgrantJBusRD.jbus_android.model.BaseResponse;
 import com.edgrantJBusRD.jbus_android.model.Bus;
 import com.edgrantJBusRD.jbus_android.request.BaseApiService;
 import com.edgrantJBusRD.jbus_android.request.UtilsApi;
@@ -161,39 +160,38 @@ public class ManageBusActivity extends AppCompatActivity {
                 paginatedList) {
             busViewList.add(new CalendarBusView(singleBus.name));
         }
-        BusArrayAdapter busArrayAdapter = new BusArrayAdapter(this, busViewList);
+        CalendarBusArrayAdapter busArrayAdapter = new CalendarBusArrayAdapter(this, busViewList);
 //        ListView listView = findViewById(R.id.listView);
         busListView.setAdapter(busArrayAdapter);
     }
 
     protected void handleGetBus() {
         int accountId = LoginActivity.loggedAccount.id;
-        System.out.println("s" + accountId);
-        mApiService.getMyBus(accountId).enqueue(new Callback<BaseResponse<List<Bus>>>() {
+        mApiService.getMyBus(accountId).enqueue(new Callback<List<Bus>>() {
             @Override
             public void onResponse(
-                    @NonNull Call<BaseResponse<List<Bus>>> call,
-                    @NonNull Response<BaseResponse<List<Bus>>> response) {
+                    @NonNull Call<List<Bus>> call,
+                    @NonNull Response<List<Bus>> response) {
                 // handle the potential 4xx & 5xx error
                 if (!response.isSuccessful()) {
                     Toast.makeText(mContext, "Application error " +
                             response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                BaseResponse<List<Bus>> res = response.body();
-                assert res != null;
-                if(res.success) {
+//                List<Bus> res = response.body();
+//                assert res != null;
+//                if(res.success) {
                     System.out.println("Ke dalam sini");
-                    listBus = res.payload;
+                    listBus = response.body();
                     listSize = listBus.size();
                     // construct the footer
                     paginationFooter();
                     goToPage(currentPage);
-                }
-                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
+//                }
+                Toast.makeText(mContext, "berhasil", Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onFailure(@NonNull Call<BaseResponse<List<Bus>>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<Bus>> call, @NonNull Throwable t) {
                 Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
             }
         });
