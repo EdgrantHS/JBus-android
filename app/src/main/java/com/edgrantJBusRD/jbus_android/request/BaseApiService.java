@@ -44,5 +44,5 @@ public interface BaseApiService {
             @Query("accountId") int accountId
     );
     @GET("station/getAll")
-    Call<BaseResponse<List<Station>>> getAllStation();
+    Call<List<Station>> getAllStation();
 }
