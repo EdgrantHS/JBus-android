@@ -6,5 +6,6 @@ public enum City {
     YOGYAKARTA,
     SEMARANG,
     SURABAYA,
+    SUKABUMI,
     BALI
 }

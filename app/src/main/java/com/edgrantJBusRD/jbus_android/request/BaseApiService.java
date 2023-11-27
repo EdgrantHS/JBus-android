@@ -3,6 +3,8 @@ package com.edgrantJBusRD.jbus_android.request;
 import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.BaseResponse;
 import com.edgrantJBusRD.jbus_android.model.Bus;
+import com.edgrantJBusRD.jbus_android.model.BusType;
+import com.edgrantJBusRD.jbus_android.model.Facility;
 import com.edgrantJBusRD.jbus_android.model.Renter;
 import com.edgrantJBusRD.jbus_android.model.Station;
 
@@ -39,10 +41,22 @@ public interface BaseApiService {
             @Query("address") String address,
             @Query("phoneNumber") String phoneNumber
     );
-    @GET("account/getMyBus")
+    @GET("bus/getMyBus")
     Call<BaseResponse<List<Bus>>> getMyBus(
             @Query("accountId") int accountId
     );
     @GET("station/getAll")
     Call<List<Station>> getAllStation();
+
+    @POST("bus/create")
+    Call<BaseResponse<Bus>> createBus(
+            @Query("accountId") int accountId,
+            @Query("name") String name,
+            @Query("capacity") int capacity,
+            @Query("facilities") List<Facility> facilities,
+            @Query("busType") BusType busType,
+            @Query("price") int price,
+            @Query("stationDepartureId") int stationDepartureId,
+            @Query("stationArrivalId") int stationArrivalId
+    );
 }

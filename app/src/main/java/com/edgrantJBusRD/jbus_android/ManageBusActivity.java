@@ -167,7 +167,9 @@ public class ManageBusActivity extends AppCompatActivity {
     }
 
     protected void handleGetBus() {
-        mApiService.getMyBus(LoginActivity.loggedAccount.id).enqueue(new Callback<BaseResponse<List<Bus>>>() {
+        int accountId = LoginActivity.loggedAccount.id;
+        System.out.println("s" + accountId);
+        mApiService.getMyBus(accountId).enqueue(new Callback<BaseResponse<List<Bus>>>() {
             @Override
             public void onResponse(
                     @NonNull Call<BaseResponse<List<Bus>>> call,
@@ -180,9 +182,13 @@ public class ManageBusActivity extends AppCompatActivity {
                 }
                 BaseResponse<List<Bus>> res = response.body();
                 assert res != null;
-                if (res.success) finish();
                 if(res.success) {
+                    System.out.println("Ke dalam sini");
                     listBus = res.payload;
+                    listSize = listBus.size();
+                    // construct the footer
+                    paginationFooter();
+                    goToPage(currentPage);
                 }
                 Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
