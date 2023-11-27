@@ -10,10 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-public class BusArrayAdapter extends ArrayAdapter<BusView> {
+public class BusArrayAdapter extends ArrayAdapter<CalendarBusView> {
 
     // invoke the suitable constructor of the ArrayAdapter class 
-    public BusArrayAdapter(@NonNull Context context, ArrayList<BusView> arrayList) {
+    public BusArrayAdapter(@NonNull Context context, ArrayList<CalendarBusView> arrayList) {
 
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -33,7 +33,7 @@ public class BusArrayAdapter extends ArrayAdapter<BusView> {
         }
 
         // get the position of the view from the ArrayAdapter 
-        BusView currentNumberPosition = getItem(position);
+        CalendarBusView currentNumberPosition = getItem(position);
 
 //        // then according to the position of the view assign the desired image for the same
 //        ImageView numbersImage = currentItemView.findViewById(R.id.imageView);

@@ -3,7 +3,6 @@ package com.edgrantJBusRD.jbus_android;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,16 +16,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.Bus;
-import com.edgrantJBusRD.jbus_android.request.BaseApiService;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public class MainActivity extends AppCompatActivity {
     private Button[] btns;
@@ -35,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int listSize;
     private int noOfPages;
     private List<Bus> listBus = new ArrayList<>();
-    ArrayList<BusView> busViewList = new ArrayList<>();
+    ArrayList<CalendarBusView> busViewList = new ArrayList<>();
 
     private Button prevButton = null;
     private Button nextButton = null;
@@ -151,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         busViewList.clear();
         for (Bus singleBus :
                 paginatedList) {
-            busViewList.add(new BusView(singleBus.name));
+            busViewList.add(new CalendarBusView(singleBus.name));
         }
         BusArrayAdapter busArrayAdapter = new BusArrayAdapter(this, busViewList);
 //        ListView listView = findViewById(R.id.listView);

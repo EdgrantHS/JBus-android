@@ -37,7 +37,7 @@ public class ManageBusActivity extends AppCompatActivity {
     private int listSize;
     private int noOfPages;
     private List<Bus> listBus = new ArrayList<>();
-    ArrayList<BusView> busViewList = new ArrayList<>();
+    ArrayList<CalendarBusView> busViewList = new ArrayList<>();
 
     private Button prevButton = null;
     private Button nextButton = null;
@@ -159,7 +159,7 @@ public class ManageBusActivity extends AppCompatActivity {
         busViewList.clear();
         for (Bus singleBus :
                 paginatedList) {
-            busViewList.add(new BusView(singleBus.name));
+            busViewList.add(new CalendarBusView(singleBus.name));
         }
         BusArrayAdapter busArrayAdapter = new BusArrayAdapter(this, busViewList);
 //        ListView listView = findViewById(R.id.listView);

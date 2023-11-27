@@ -4,6 +4,7 @@ import com.edgrantJBusRD.jbus_android.model.Account;
 import com.edgrantJBusRD.jbus_android.model.BaseResponse;
 import com.edgrantJBusRD.jbus_android.model.Bus;
 import com.edgrantJBusRD.jbus_android.model.Renter;
+import com.edgrantJBusRD.jbus_android.model.Station;
 
 import java.util.List;
 
@@ -42,4 +43,6 @@ public interface BaseApiService {
     Call<BaseResponse<List<Bus>>> getMyBus(
             @Query("accountId") int accountId
     );
+    @GET("station/getAll")
+    Call<BaseResponse<List<Station>>> getAllStation();
 }

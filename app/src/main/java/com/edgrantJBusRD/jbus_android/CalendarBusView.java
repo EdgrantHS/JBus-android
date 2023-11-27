@@ -1,11 +1,11 @@
 package com.edgrantJBusRD.jbus_android;
 
 
-public class BusView {
+public class CalendarBusView {
 
     private String busName;
 
-    public BusView(String busName) {
+    public CalendarBusView(String busName) {
         this.busName = busName;
     }
 

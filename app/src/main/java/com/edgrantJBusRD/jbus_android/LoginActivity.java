@@ -24,10 +24,10 @@
 
 
     public class LoginActivity extends AppCompatActivity {
-        private BaseApiService mApiService;
-        private EditText emailEditText = null;
         private EditText passwordEditText = null;
         private final Context mContext = this;
+        private BaseApiService mApiService;
+        private EditText emailEditText = null;
         public static Account loggedAccount = null;
 
         @Override
