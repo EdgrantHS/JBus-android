@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 public class CalendarBusArrayAdapter extends ArrayAdapter<CalendarBusView> {
-
+    public static int busId;
     public CalendarBusArrayAdapter(@NonNull Context context, ArrayList<CalendarBusView> arrayList) {
         super(context, 0, arrayList);
     }
@@ -45,6 +45,7 @@ public class CalendarBusArrayAdapter extends ArrayAdapter<CalendarBusView> {
             Intent intent = new Intent(getContext(), AddScheduleActivity.class);
             // Add any extra data if needed
             getContext().startActivity(intent);
+            busId = ManageBusActivity.listBus.get(position).id;
         });
 
         // Return the completed view to render on screen

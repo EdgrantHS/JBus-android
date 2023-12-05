@@ -35,7 +35,7 @@ public class ManageBusActivity extends AppCompatActivity {
     private int pageSize = 5; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus = new ArrayList<>();
+    public static List<Bus> listBus = new ArrayList<>();
     ArrayList<CalendarBusView> busViewList = new ArrayList<>();
 
     private Button prevButton = null;

@@ -59,4 +59,10 @@ public interface BaseApiService {
             @Query("stationDepartureId") int stationDepartureId,
             @Query("stationArrivalId") int stationArrivalId
     );
+
+    @POST("bus/addSchedule")
+    Call<BaseResponse<Bus>> addSchedule(
+            @Query("busId") int busId,
+            @Query("time") String time //contoh: "2023-12-05 15:30:00"
+    );
 }
