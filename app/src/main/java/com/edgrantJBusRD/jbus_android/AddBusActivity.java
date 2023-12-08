@@ -118,17 +118,6 @@ public class AddBusActivity extends AppCompatActivity {
         departureSpinner = this.findViewById(R.id.departure_type_dropdown);
         arivalSpinner = this.findViewById(R.id.arrival_type_dropdown);
         System.out.println(stationList);
-//
-//        ArrayAdapter deptBus = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, stationNameList);
-//        deptBus.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-//        departureSpinner.setAdapter(deptBus);
-//        departureSpinner.setOnItemSelectedListener(deptOISL);
-//
-//
-//        ArrayAdapter arvBus = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, stationNameList);
-//        arvBus.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-//        arivalSpinner.setAdapter(arvBus);
-//        arivalSpinner.setOnItemSelectedListener(arvOISL);
 
         //check box
         cAC = findViewById(R.id.AC);
