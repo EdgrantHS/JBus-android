@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.edgrantJBusRD.jbus_android.model.Facility;
+
 public class BusDetailActivity extends AppCompatActivity {
 
     private TextView valueBusName;
@@ -44,12 +46,11 @@ public class BusDetailActivity extends AppCompatActivity {
         cbToilet = findViewById(R.id.cbToilet);
         cbLunch = findViewById(R.id.cbLunch);
 
-        // Set values based on variables (example values used here)
-        String busName = "Express Bus";
-        String departureStation = "Central Station";
-        String arrivalStation = "Downtown";
-        String price = "$20";
-        String capacity = "40 seats";
+        String busName = BusArrayAdapter.selectedBus.name;
+        String departureStation = BusArrayAdapter.selectedBus.departure.stationName;
+        String arrivalStation = BusArrayAdapter.selectedBus.arrival.stationName;
+        String price = String.valueOf(BusArrayAdapter.selectedBus.price.price);
+        String capacity = String.valueOf(BusArrayAdapter.selectedBus.capacity);
 
         valueBusName.setText(busName);
         valueDStation.setText(departureStation);
@@ -58,13 +59,13 @@ public class BusDetailActivity extends AppCompatActivity {
         valueCapacity.setText(capacity);
 
         // Set CheckBox states (example states used here)
-        cbAC.setChecked(true);
-        cbLCDTV.setChecked(false);
-        cbLargeBeverage.setChecked(true);
-        cbWIFI.setChecked(true);
-        cbCoolbox.setChecked(false);
-        cbElectronicSocket.setChecked(true);
-        cbToilet.setChecked(true);
-        cbLunch.setChecked(false);
+        cbAC.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.AC));
+        cbLCDTV.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.LCD_TV));
+        cbLargeBeverage.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.LARGE_BAGGAGE));
+        cbWIFI.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.WIFI));
+        cbCoolbox.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.COOL_BOX));
+        cbElectronicSocket.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.ELECTRIC_SOCKET));
+        cbToilet.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.TOILET));
+        cbLunch.setChecked(BusArrayAdapter.selectedBus.facilities.contains(Facility.LUNCH));
     }
 }

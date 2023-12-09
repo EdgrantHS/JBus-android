@@ -45,6 +45,9 @@ public interface BaseApiService {
     Call<List<Bus>> getMyBus(
             @Query("accountId") int accountId
     );
+
+    @GET("bus/getAllBus")
+    Call<List<Bus>> getAllBus();
     @GET("station/getAll")
     Call<List<Station>> getAllStation();
 

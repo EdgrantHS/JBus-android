@@ -9,10 +9,6 @@ public class CalendarBusView {
         this.busName = busName;
     }
 
-    public void setBusName(String busName) {
-        this.busName = busName;
-    }
-
     public String getBusName() {
         return this.busName;
     }

@@ -15,11 +15,18 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.edgrantJBusRD.jbus_android.model.Bus;
+import com.edgrantJBusRD.jbus_android.request.BaseApiService;
+import com.edgrantJBusRD.jbus_android.request.UtilsApi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private Button[] btns;
@@ -27,21 +34,22 @@ public class MainActivity extends AppCompatActivity {
     private int pageSize = 5; // kalian dapat bereksperimen dengan field ini
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus = new ArrayList<>();
-    ArrayList<CalendarBusView> busViewList = new ArrayList<>();
+    public static List<Bus> listBus = new ArrayList<>();
+    ArrayList<BusView> busViewList = new ArrayList<>();
 
     private Button prevButton = null;
     private Button nextButton = null;
     private ListView busListView = null;
     private HorizontalScrollView pageScroll = null;
+    private final Context mContext = this;
+    private BaseApiService mApiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ArrayList<Bus> busList = (ArrayList<Bus>) Bus.sampleBusList(40);
-
+        mApiService = UtilsApi.getApiService();
 
 
         // hubungkan komponen dengan ID nya
@@ -50,10 +58,7 @@ public class MainActivity extends AppCompatActivity {
         pageScroll = findViewById(R.id.page_number_scroll);
         busListView = findViewById(R.id.listView);
 
-
-        // membuat sample list
-        listBus = Bus.sampleBusList(20);
-        listSize = listBus.size();
+        handleGetBus();
         // construct the footer
         paginationFooter();
         goToPage(currentPage);
@@ -144,10 +149,45 @@ public class MainActivity extends AppCompatActivity {
         busViewList.clear();
         for (Bus singleBus :
                 paginatedList) {
-            busViewList.add(new CalendarBusView(singleBus.name));
+            busViewList.add(new BusView(
+                    singleBus.name,
+                    singleBus.departure.stationName,
+                    singleBus.arrival.stationName
+            ));
         }
         BusArrayAdapter busArrayAdapter = new BusArrayAdapter(this, busViewList);
 //        ListView listView = findViewById(R.id.listView);
         busListView.setAdapter(busArrayAdapter);
     }
+
+    protected void handleGetBus() {
+        mApiService.getAllBus().enqueue(new Callback<List<Bus>>() {
+            @Override
+            public void onResponse(
+                    @NonNull Call<List<Bus>> call,
+                    @NonNull Response<List<Bus>> response) {
+                // handle the potential 4xx & 5xx error
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " +
+                            response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+//                System.out.println("Ke dalam sini");
+                listBus = response.body();
+                listSize = listBus.size();
+                // construct the footer
+                paginationFooter();
+                goToPage(currentPage);
+//                }
+//                Toast.makeText(mContext, "berhasil", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(@NonNull Call<List<Bus>> call, @NonNull Throwable t) {
+                Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
+

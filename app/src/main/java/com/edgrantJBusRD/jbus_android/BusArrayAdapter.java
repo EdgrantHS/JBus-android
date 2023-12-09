@@ -1,54 +1,56 @@
 package com.edgrantJBusRD.jbus_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.edgrantJBusRD.jbus_android.model.Bus;
+
 import java.util.ArrayList;
-public class BusArrayAdapter extends ArrayAdapter<CalendarBusView> {
 
-    // invoke the suitable constructor of the ArrayAdapter class 
-    public BusArrayAdapter(@NonNull Context context, ArrayList<CalendarBusView> arrayList) {
+public class BusArrayAdapter extends ArrayAdapter<BusView> {
 
-        // pass the context and arrayList for the super
-        // constructor of the ArrayAdapter class
+    public static Bus selectedBus; // Static variable to hold the selected bus object
+
+    public BusArrayAdapter(@NonNull Context context, ArrayList<BusView> arrayList) {
         super(context, 0, arrayList);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        // convertView which is recyclable view 
         View currentItemView = convertView;
-
-        // of the recyclable view is null then inflate the custom layout for the same 
         if (currentItemView == null) {
             currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.bus_view, parent, false);
         }
 
-        // get the position of the view from the ArrayAdapter 
-        CalendarBusView currentNumberPosition = getItem(position);
+        BusView currentBus = getItem(position);
 
-//        // then according to the position of the view assign the desired image for the same
-//        ImageView numbersImage = currentItemView.findViewById(R.id.imageView);
-//        assert currentNumberPosition != null;
-//        numbersImage.setImageResource(currentNumberPosition.getNumbersImageId());
-//
-//        // then according to the position of the view assign the desired TextView 1 for the same
-//        TextView textView1 = currentItemView.findViewById(R.id.textView1);
-//        textView1.setText(currentNumberPosition.getNumberInDigit());
+        TextView busNameTextView = currentItemView.findViewById(R.id.busName);
+        TextView departureTextView = currentItemView.findViewById(R.id.valDTxt);
+        TextView arrivalTextView = currentItemView.findViewById(R.id.valATxt);
+        Button detailButton = currentItemView.findViewById(R.id.detailBtn);
 
-        // then according to the position of the view assign the desired TextView 2 for the same 
-        TextView textView2 = currentItemView.findViewById(R.id.busName);
-        textView2.setText(currentNumberPosition != null ? currentNumberPosition.getBusName() : null);
+        if (currentBus != null) {
+            busNameTextView.setText(currentBus.getBusName());
+            departureTextView.setText(currentBus.getDeptStation());
+            arrivalTextView.setText(currentBus.getArrStation());
 
-        // then return the recyclable view 
+            detailButton.setOnClickListener(view -> {
+                selectedBus = MainActivity.listBus.get(position);
+                // move to bus detail
+                Intent intent = new Intent(getContext(), BusDetailActivity.class);
+                getContext().startActivity(intent);
+            });
+        }
+
         return currentItemView;
     }
 }

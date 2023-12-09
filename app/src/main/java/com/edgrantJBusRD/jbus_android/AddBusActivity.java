@@ -188,7 +188,7 @@ public class AddBusActivity extends AppCompatActivity {
                 arivalSpinner.setAdapter(arvBus);
                 arivalSpinner.setOnItemSelectedListener(arvOISL);
 
-                Toast.makeText(mContext, "berhasil dapat station", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, "berhasil dapat station", Toast.LENGTH_SHORT).show();
 //                }
 //                else {
 //                    Toast.makeText(mContext, "station doesn't exist", Toast.LENGTH_SHORT).show();
@@ -242,19 +242,9 @@ public class AddBusActivity extends AppCompatActivity {
                 BaseResponse<Bus> res = response.body();
                 // if success finish this activity (back to login activity)
                 assert res != null;
-//                System.out.println("1" + res.message);
-//                System.out.println(
-//                        "iId" + iId + "\n" +
-//                        "sName" + sName + "\n" +
-//                        "iCapacity" + iCapacity + "\n" +
-//                        "lSelectedFacilities" + lSelectedFacilities + "\n" +
-//                        "bBusType" + bBusType + "\n" +
-//                        "iPrice" + iPrice + "\n" +
-//                        "iDepart" + iDepart + "\n" +
-//                        "iArive" + iArive);
                 if (res.success) finish();
                 moveActivity(mContext, ManageBusActivity.class);
-                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(@NonNull Call<BaseResponse<Bus>> call, @NonNull Throwable t) {
