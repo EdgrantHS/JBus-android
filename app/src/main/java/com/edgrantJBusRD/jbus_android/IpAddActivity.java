@@ -15,9 +15,6 @@ import com.edgrantJBusRD.jbus_android.request.UtilsApi;
 
 public class IpAddActivity extends AppCompatActivity {
     private final Context mContext = this;
-    private BaseApiService mApiService;
-    private String time;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +33,22 @@ public class IpAddActivity extends AppCompatActivity {
                     validateInput(inputIP0, 0, 255)) {
                 Toast.makeText(IpAddActivity.this, "Invalid Input Detected", Toast.LENGTH_SHORT).show();
             } else {
-                String ipString = "https://" + inputIP3.getText().toString() + "." + inputIP2.getText().toString() + "." + inputIP1.getText().toString() + "." + inputIP0.getText().toString();
-                        UtilsApi.BASE_URL_API = ipString;
+                setApiBaseUrl(inputIP3, inputIP2, inputIP1, inputIP0);
             }
         });
     }
 
+    private void setApiBaseUrl(EditText ip3, EditText ip2, EditText ip1, EditText ip0) {
+        String ipString = "http://"
+                + ip3.getText().toString()
+                + "." + ip2.getText().toString()
+                + "." + ip1.getText().toString()
+                + "." + ip0.getText().toString()
+                + ":5000/";
+        UtilsApi.BASE_URL_API = ipString;
+        moveActivity(mContext, LoginActivity.class);
+        Toast.makeText(IpAddActivity.this, "IP Changed", Toast.LENGTH_SHORT).show();
+    }
 
     private boolean validateInput(@NonNull EditText editText, int min, int max) {
         try {

@@ -112,6 +112,7 @@
                 @Override
                 public void onFailure(@NonNull Call<BaseResponse<Account>> call, @NonNull Throwable t) {
                     Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
+//                    moveActivity(mContext, IpAddActivity.class); //masih gak bisa
                 }
             });
         }

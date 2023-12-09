@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="set IP Address"
+        android:text="Set IP Address"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="1"
-            android:hint="255"
+            android:hint="192"
             android:inputType="number" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="1"
-            android:hint="255"
+            android:hint="168"
             android:inputType="number" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="1"
-            android:hint="255"
+            android:hint="1"
             android:inputType="number" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="1"
-            android:hint="255"
+            android:hint="2"
             android:inputType="number" />
 
     </LinearLayout>
