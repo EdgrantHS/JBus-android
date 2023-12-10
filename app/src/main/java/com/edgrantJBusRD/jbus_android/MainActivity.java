@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         busListView = findViewById(R.id.listView);
 
         handleGetBus();
+
         // construct the footer
         paginationFooter();
         goToPage(currentPage);
@@ -84,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.account_button) {
             moveActivity(this, AboutMeActivity.class);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.payment_button) {
+            moveActivity(this, MainActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -189,5 +195,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    protected void refreshBus() {
+        mApiService.getAllBus().enqueue(new Callback<List<Bus>>() {
+            @Override
+            public void onResponse(
+                    @NonNull Call<List<Bus>> call,
+                    @NonNull Response<List<Bus>> response) {
+                // handle the potential 4xx & 5xx error
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " +
+                            response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                listBus = response.body();
+                listSize = listBus.size();
+            }
+            @Override
+            public void onFailure(@NonNull Call<List<Bus>> call, @NonNull Throwable t) {
+                Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
 

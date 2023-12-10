@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,12 +37,11 @@ import retrofit2.Response;
 public class AddBusActivity extends AppCompatActivity {
     private final BusType[] busType = BusType.values();
     private BusType selectedBusType;
-    private Spinner busTypeSpinner;
     private Spinner departureSpinner;
     private Spinner arivalSpinner;
     private List<Station> stationList = new ArrayList<>();
 
-    List<String> stationNameList = new ArrayList<>();
+    private final List<String> stationNameList = new ArrayList<>();
     private int selectedDeptStationID;
     private int selectedArrStationID;
     private final Context mContext = this;
@@ -49,7 +51,7 @@ public class AddBusActivity extends AppCompatActivity {
     private CheckBox cAC, cLCDTV, cLargeBeverage;
     private CheckBox cWIFI, cCoolbox, cElectronicSocket;
     private CheckBox cToilet, cLunch;
-    private List<Facility> selectedFacilities = new ArrayList<>();
+    private final List<Facility> selectedFacilities = new ArrayList<>();
 
     //text input
     TextView name = null;
@@ -102,7 +104,7 @@ public class AddBusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_bus);
 
         mApiService = UtilsApi.getApiService();
-        busTypeSpinner = this.findViewById(R.id.bus_type_dropdown);
+        Spinner busTypeSpinner = this.findViewById(R.id.bus_type_dropdown);
         Button addButton = findViewById(R.id.addButton);
         name = findViewById(R.id.BusName);
         price = findViewById(R.id.Price);
@@ -163,10 +165,6 @@ public class AddBusActivity extends AppCompatActivity {
                             response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                List<Station> res = response.body();
-//                finish();
-
-//                if(res != null) {
                 stationList = response.body(); //simpan response body ke stationList
                 //mengambil nama station
                 assert stationList != null;
@@ -189,22 +187,33 @@ public class AddBusActivity extends AppCompatActivity {
                 arivalSpinner.setOnItemSelectedListener(arvOISL);
 
 //                Toast.makeText(mContext, "berhasil dapat station", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(mContext, "station doesn't exist", Toast.LENGTH_SHORT).show();
-//                }
             }
             @Override
             public void onFailure(@NonNull Call<List<Station>> call, @NonNull Throwable t) {
                 Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
             }
         });
-//        //cara curang
-//        stationList.add(new Station(City.DEPOK, "Jl. Jatijajar 1 No.04, Jatijajar, Kec. Tapos, Jawa Barat", "Terminal Jatijajar"));
-//        stationList.add(new Station(City.JAKARTA, "RT.2/RW.8, Pasar Manggis, Kota Jakarta Selatan", "Terminal Manggarai"));
-//        stationList.add(new Station(City.SUKABUMI, "Jalan Lingkar Selatan Nomor 7, Kota Sukabumi", "Terminal Sukabumi"));
-//        stationList.add(new Station(City.SURABAYA, "Kasian, Bungurasih, Kabupaten Sidoarjo, Jawa Timur", "Terminal Purabaya"));
-//        stationList.add(new Station(City.SURABAYA, "Giwangan, Kec. Umbulharjo, Daerah Istimewa Yogyakarta", "Terminal Giwangan"));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.account_button) {
+            moveActivity(this, AboutMeActivity.class);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.payment_button) {
+            moveActivity(this, MainActivity.class);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     protected void handleCreateBus() {
@@ -244,7 +253,7 @@ public class AddBusActivity extends AppCompatActivity {
                 assert res != null;
                 if (res.success) finish();
                 moveActivity(mContext, ManageBusActivity.class);
-//                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onFailure(@NonNull Call<BaseResponse<Bus>> call, @NonNull Throwable t) {

@@ -95,6 +95,11 @@ public class ManageBusActivity extends AppCompatActivity {
             moveActivity(this, AboutMeActivity.class);
             return true;
         }
+
+        if (item.getItemId() == R.id.payment_button) {
+            moveActivity(this, MainActivity.class);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

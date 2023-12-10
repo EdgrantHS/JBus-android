@@ -21,7 +21,7 @@
             tools:ignore="HardcodedText" />
         <item
             android:id="@+id/payment_button"
-            android:icon="@drawable/payment"
+            android:icon="@drawable/baseline_home_24"
             android:title="Payment Button"
             app:showAsAction="collapseActionView|always"
             tools:ignore="HardcodedText" />

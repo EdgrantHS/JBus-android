@@ -1,12 +1,6 @@
 package com.edgrantJBusRD.jbus_android.request;
 
-import com.edgrantJBusRD.jbus_android.model.Account;
-import com.edgrantJBusRD.jbus_android.model.BaseResponse;
-import com.edgrantJBusRD.jbus_android.model.Bus;
-import com.edgrantJBusRD.jbus_android.model.BusType;
-import com.edgrantJBusRD.jbus_android.model.Facility;
-import com.edgrantJBusRD.jbus_android.model.Renter;
-import com.edgrantJBusRD.jbus_android.model.Station;
+import com.edgrantJBusRD.jbus_android.model.*;
 
 import java.util.List;
 
@@ -63,9 +57,21 @@ public interface BaseApiService {
             @Query("stationArrivalId") int stationArrivalId
     );
 
+    @POST("payment/makeBooking")
+    Call<BaseResponse<Payment>> makeBooking(
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("busId") int busId,
+            @Query("busSeats") List<String> busSeats,
+            @Query("busType") BusType busType,
+            @Query("departureDate") String departureDate
+    );
+
     @POST("bus/addSchedule")
     Call<BaseResponse<Bus>> addSchedule(
             @Query("busId") int busId,
             @Query("time") String time //contoh: "2023-12-05 15:30:00"
     );
+
+
 }
