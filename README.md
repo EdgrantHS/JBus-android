@@ -47,11 +47,19 @@ JBusRD Android App is a comprehensive bus management system designed to facilita
 - Adjust `pageSize` in `MainActivity` and `ManageBusActivity` for pagination.
 
 # Activities
-![872591_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/71f86182-9e4e-4aad-81d4-fa14f2b79d25)
-![872590_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/015856c2-8527-4e72-a42b-11845844689d)
-![872588_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/9d998f78-b0f4-4fc4-a5fa-e893c530e568)
-![872595_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/2c82b853-b725-44dc-9967-963aa9000242)
-![872594_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/1f738472-2a32-4343-8954-cdaf3393996b)
-![872593_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/9045583f-e00d-4cea-9f67-88782c9fcf10)
-![872589_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/e1c0d5ec-5af7-4ca1-8bb1-2f829180ae3e)
-![872592_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/f28546de-dadb-45a2-91fe-5e4004f32192)
+## login
+![login](https://github.com/EdgrantHS/JBus-android/assets/60654087/72e78e40-2a6b-4cad-8b43-6808a1e3c2fd)
+## register
+![register](https://github.com/EdgrantHS/JBus-android/assets/60654087/8d5bec50-da66-4fed-a681-c024255a9947)
+## mainactivity
+![mainactivity](https://github.com/EdgrantHS/JBus-android/assets/60654087/19929b20-d25e-44cb-987d-83b5df75b305)
+## busdetail
+![busdetail](https://github.com/EdgrantHS/JBus-android/assets/60654087/423fbe54-468e-482f-b9b3-d41b66928639)
+## aboutme
+![aboutme](https://github.com/EdgrantHS/JBus-android/assets/60654087/83e2e8dc-952c-44ac-bd36-0286beda552a)
+## managebus
+![managebus](https://github.com/EdgrantHS/JBus-android/assets/60654087/e73c29fc-e071-4f58-9777-68984c155ff2)
+## addschedule
+![addschedule](https://github.com/EdgrantHS/JBus-android/assets/60654087/0a552a2a-eea1-4243-9666-a301e49fcc23)
+## addbus
+![addbus](https://github.com/EdgrantHS/JBus-android/assets/60654087/94433c24-5a85-4b6d-b4f4-52db8f7db6eb)
