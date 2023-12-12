@@ -45,3 +45,13 @@ JBusRD Android App is a comprehensive bus management system designed to facilita
 #### Notes
 - Ensure your backend API is running and accessible, change the IP address to the backend in UtilsApi class.
 - Adjust `pageSize` in `MainActivity` and `ManageBusActivity` for pagination.
+
+# Activities
+![872591_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/71f86182-9e4e-4aad-81d4-fa14f2b79d25)
+![872590_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/015856c2-8527-4e72-a42b-11845844689d)
+![872588_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/9d998f78-b0f4-4fc4-a5fa-e893c530e568)
+![872595_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/2c82b853-b725-44dc-9967-963aa9000242)
+![872594_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/1f738472-2a32-4343-8954-cdaf3393996b)
+![872593_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/9045583f-e00d-4cea-9f67-88782c9fcf10)
+![872589_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/e1c0d5ec-5af7-4ca1-8bb1-2f829180ae3e)
+![872592_0](https://github.com/EdgrantHS/JBus-android/assets/60654087/f28546de-dadb-45a2-91fe-5e4004f32192)
